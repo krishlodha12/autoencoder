@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 
 COUNTER_API_URL = "https://cvu.sdsu.edu/dp/port57/getcsv/counters"
 API_LOGIN_URL = "https://cvu.sdsu.edu/__login__"
-REQUEST_PAYLOAD = {"username": "counters", "password": "eipa8eikacooZe!"}
+REQUEST_PAYLOAD = {"username": "counters", "password": "********"}
 
 SAMPLING_RATE_IN_SECONDS = 25  # 1 minute
 TRAIN_AUTOENCODER_FREQUENCY_IN_SECONDS = 10  # 5 minutes
