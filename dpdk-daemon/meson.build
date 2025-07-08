@@ -7,14 +7,16 @@
 # DPDK instance, use 'make'
 
 #rte_eth_read_clock is experimental
+project('dpdk-daemon', 'c')
 
 allow_experimental_apis = true
 
 dpdk = dependency('libdpdk', required: true)
+sqlite = dependency('sqlite3', required: true)
 
 sources = files('main.c')
 
 executable('dpdk-rxtx_callbacks', 
     sources: sources,
-    dependencies: [dpdk],
+    dependencies: [dpdk,sqlite],
     install: true)
