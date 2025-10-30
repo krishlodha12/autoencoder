@@ -1,0 +1,34 @@
+name: build-and-push-ae-infer
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "autoencoder/infer/**"
+      - ".github/workflows/build-infer.yml"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: ./autoencoder/infer
+          file: ./autoencoder/infer/Dockerfile.infer
+          push: true
+          platforms: linux/amd64
+          tags: |
+            klodha2790/ae-infer:v2
+            klodha2790/ae-infer:${{ github.sha }}
