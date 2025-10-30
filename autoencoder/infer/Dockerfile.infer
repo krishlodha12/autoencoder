@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Copy code/models
 COPY inference_server.py /app/
-COPY models/ /app/models/
+COPY models/ /models/
 
 # Example: expose port and default command
 EXPOSE 6006
